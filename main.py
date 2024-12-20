@@ -13,7 +13,6 @@ WINDOW_LENGTH = 4
 SQUARESIZE = 100
 
 # Create the board 
-# shahd
 def create_board():
     return np.zeros((ROW_COUNT, COLUMN_COUNT)) 
 
@@ -31,7 +30,7 @@ def get_next_open_row(board, col):
         if board[r][col] == 0:
             return r
 #----------------------------------------
-# Check for a winning move -Muhrael
+# Check for a winning move 
 def winning_move(board, piece):
     # Check horizontal locations
     for c in range(COLUMN_COUNT - 3):
@@ -79,7 +78,7 @@ def winning_move(board, piece):
 
     return False
 #------------------------------------------
-# Evaluate a window for scoring -Nada
+# Evaluate a window for scoring 
 def evaluate_window(window, piece):
     score = 0
     opp_piece = PLAYER_PIECE if piece == AI_PIECE else AI_PIECE
@@ -96,7 +95,7 @@ def evaluate_window(window, piece):
 
     return score
 
-# Score the board -Nada
+# Score the board
 def score_position(board, piece):
     score = 0
 
@@ -133,7 +132,7 @@ def score_position(board, piece):
 
     return score
 
-# Check for terminal - rahma
+# Check for terminal 
 def is_terminal_node(board):
     return (
         winning_move(board, PLAYER_PIECE)
@@ -142,7 +141,7 @@ def is_terminal_node(board):
     )
     
     
-# Get valid locations -rahma
+# Get valid locations 
 def get_valid_locations(board):
     valid_locations = []
     for col in range(COLUMN_COUNT):
@@ -150,7 +149,7 @@ def get_valid_locations(board):
             valid_locations.append(col)
     return valid_locations
 
-# Minimax algorithm -abanoub & Ahmed Khalid
+# Minimax algorithm
 def minimax(board, depth, alpha, beta, maximizingPlayer): 
     valid_locations = get_valid_locations(board) 
     is_terminal = is_terminal_node(board)
@@ -197,7 +196,7 @@ def minimax(board, depth, alpha, beta, maximizingPlayer):
                 break
         return column, final_score
 
-# Draw the board -nancy 
+# Draw the board 
 def draw_board():
     canvas.delete("all")
     for r in range(ROW_COUNT):
@@ -216,7 +215,7 @@ def draw_board():
                 fill=color,
             )
 
-# Make a move  - manar 
+# Make a move  
 def make_move(col):
     global turn
     if is_valid_location(board, col):
@@ -235,12 +234,12 @@ def make_move(col):
         if turn == 1:
             ai_move()
 
-# AI move -shahd
+# AI move 
 def ai_move():
     col, minimax_score = minimax(board, 5, -math.inf, math.inf, True)
     make_move(col)
 
-# Initialize the game
+
 board = create_board()
 turn = 0
 
